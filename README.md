@@ -1,2 +1,2 @@
-# StartPHP-Core
-StartPHP framework core code repository
+# StartPHP核心代码仓库
+StartPHP-Core仓库仅用于StartPHP框架的版本无缝更新，将核心代码与框架主体部分解耦合，避免在升级过程中丢失用户数据。
