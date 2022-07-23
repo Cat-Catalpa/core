@@ -1,6 +1,6 @@
 {
-  "name": "catcatalpa/startphp",
-  "description": "StartPHP is a lightweight, easy-to-learn, and complete PHP back-end development framework",
+  "name": "catcatalpa/core",
+  "description": "StartPHP framework core code",
   "type": "project",
   "require": {
     "php": ">=7.25",
