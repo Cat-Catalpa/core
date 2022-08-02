@@ -4,8 +4,6 @@
   "type": "project",
   "require": {
     "php": ">=7.3",
-    "symfony/console": "^5.4",
-    "ext-json": "*"
   },
   "license": "Apache-2.0",
   "autoload": {
