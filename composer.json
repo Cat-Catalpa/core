@@ -3,7 +3,7 @@
   "description": "StartPHP framework core code",
   "type": "project",
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.3"
   },
   "license": "Apache-2.0",
   "autoload": {
