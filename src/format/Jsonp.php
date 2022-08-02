@@ -11,9 +11,9 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\format\Jsonp;
+namespace startphp\format;
 
-use startphp\Response\Response;
+use startphp\Response;
 
 class Jsonp extends Response
 {

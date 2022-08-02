@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\View;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class View extends Facade
 {
     public static function setFacade () {
-        return "\startphp\View\View";
+        return "\startphp\View";
     }
 }

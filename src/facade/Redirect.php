@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Redirect;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Redirect extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Redirect\Redirect";
+        return "\startphp\Redirect";
     }
 }

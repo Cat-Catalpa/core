@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Env;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Env extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Env\Env";
+        return "\startphp\Env";
     }
 }

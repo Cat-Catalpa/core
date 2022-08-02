@@ -38,6 +38,8 @@ spl_autoload_register (function ($className) {
     $hasBeenRun['autoload'] = " - Autoload_Init";
     require_once (CONFIG . "Vendormap.php");
 
+    if(empty($classalias)) $classalias = require_once CONFIG. "Classalias.php";
+
     if (isset($classalias[$className]) && !empty($classalias[$className])) {
         if(class_exists ($classalias[$className])) return class_alias ($classalias[$className], $className, false);
         else $className = $classalias[$className];
@@ -47,8 +49,8 @@ spl_autoload_register (function ($className) {
     if (empty($vendor)) \ThrowError::throw(__FILE__, __LINE__, "EC100013", $className);
     $vendor_dir = $vendormap[$vendor] ?? \ThrowError::throw(__FILE__, __LINE__, "EC100014", $vendor);
     $data = explode ("\\",$className);
-    $rel_path = implode (DS,array_slice ($data,1,count($data)-3)) ?? "";
-    $rel_path = $rel_path == "/" ? "" : $rel_path;
+    $rel_path = implode (DS,array_slice ($data,1,count($data)-2)) ?? "";
+    if($rel_path == "/") $rel_path = "";
     $rel_file = basename (str_replace ("\\", "/", substr ($className, strlen ($vendor))));
     if ($vendor == "app") {
         global $url;
@@ -87,7 +89,7 @@ spl_autoload_register (function ($className) {
     }
     if (!defined ('FIRST_TRANSFER_AUTOLOAD')) define ('FIRST_TRANSFER_AUTOLOAD', 0);
     else {
-        hook_getClassName ('afterAutoload')->transfer ([$className, $rel_file]);
+        (new \startphp\Hook())->getClassName ('afterAutoload')->transfer ([$className, $rel_file]);
     }
 
 }, true, true);

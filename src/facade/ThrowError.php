@@ -11,12 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Error;
-use startphp\Facade\Facade;
+namespace startphp\Facade;
+
+use startphp\Facade;
 
 class ThrowError extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Error\ThrowError";
+        return "\startphp\ThrowError";
     }
 }

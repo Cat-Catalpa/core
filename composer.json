@@ -3,7 +3,7 @@
   "description": "StartPHP framework core code",
   "type": "project",
   "require": {
-    "php": ">=7.25",
+    "php": ">=7.3",
     "symfony/console": "^5.4",
     "ext-json": "*"
   },

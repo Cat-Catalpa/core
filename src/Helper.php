@@ -126,8 +126,8 @@ if (!function_exists ("container_get")) {
     }
 }
 
-if (!function_exists ("container_isValueSet")) {
-    function container_isValueSet ($value)
+if (!function_exists ("container_has")) {
+    function container_has ($value)
     {
         global $container;
         return $container->isValueSet ($value);
@@ -147,7 +147,7 @@ if (!function_exists ("hook_getClassName")) {
     function hook_getClassName ($hookName, $returnString = false)
     {
         require_once DIR."Hook.php";
-        $hook = new startphp\Hook\Hook();
+        $hook = new startphp\Hook();
         return $hook->getClassName ($hookName, $returnString);
     }
 }
@@ -184,7 +184,7 @@ if (!function_exists ("global")) {
 if (!function_exists ("env")) {
     function env ($name,$default = "")
     {
-        return \Env::get($name,$default);
+        return \startphp\Env::get($name,$default);
     }
 }
 
@@ -221,7 +221,7 @@ if (!function_exists ("parseGlobalUrl")) {
     function parseGlobalUrl ($saveInGlobal = false)
     {
 
-        $parser = config('url_parser','startphp\urlParser\Start\Start');
+        $parser = config('url_parser','startphp\urlParser\Start');
         $parser = new $parser;
         if($saveInGlobal) global $url;
         $url = $parser->init();
@@ -235,7 +235,7 @@ if (!function_exists ("parseGlobalUrl")) {
 if (!function_exists ("parseUrl")) {
     function parseUrl ($url)
     {
-        $parser = config('url_parser','startphp\urlParser\Start\Start');
+        $parser = config('url_parser','startphp\urlParser\Start');
         $parser = new $parser;
         $url = $parser->parse($url);
         return $url;
@@ -246,5 +246,45 @@ if (!function_exists ("lockPage")) {
     function lockPage ($content)
     {
         globals ('viewQueue')->getMainView ()->setContent ($content)->setProtect ();
+    }
+}
+
+if (!function_exists ("app")) {
+    function app ()
+    {
+        return \startphp\Container::getInstance ()->getClass('app');
+    }
+}
+
+if (!function_exists ("getClass")) {
+    function getClass ($name)
+    {
+        return app()->getClass($name);
+    }
+}
+
+if (!function_exists ("container_instance")) {
+    function container_instance ($name,$instance)
+    {
+        return app()->instance($name,$instance);
+    }
+}
+
+if (!function_exists ("container_newInstance")) {
+    function container_newInstance ($name,$autoSave = false)
+    {
+        return app()->newInstance($name,$autoSave);
+    }
+}
+
+if (!function_exists ("echoCode")) {
+    function varDumpArray (Array $array,$formatOutput = true)
+    {
+        if($formatOutput){
+            echo "<pre>";
+            var_dump ($array);
+            echo "</pre>";
+        }
+        else var_dump ($array);
     }
 }

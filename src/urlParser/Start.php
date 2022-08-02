@@ -11,9 +11,9 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\urlParser\Start;
+namespace startphp\urlParser;
 use http\Header;
-use startphp\Router\Router;
+use startphp\Router;
 
 class Start extends Router
 {
@@ -21,7 +21,7 @@ class Start extends Router
     {
         global $route;
         $returnInfo = ["app" => "", "path" => DS, "controller" => "", "function" => "", "vars" => []];
-        if(config("use_system_index_route",true) && $url == "/index")
+        if(config("use_system_index_route",true) && $url == "/index" ||  preg_match('/\/\?.*/', $url, $matches))
             $returnInfo = ["app" => DEFAULT_APP_NAME, "path" => DS, "controller" => "Index", "function" => "index", "vars" => []];
         \Route::parse($url,$route,
             function($tempValue,$combine){

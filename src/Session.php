@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Session;
+namespace startphp;
 
 class Session
 {

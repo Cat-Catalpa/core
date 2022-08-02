@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Request;
+namespace startphp;
 
 use startphp\Facade\ParseUrl\ParseUrl;
 
@@ -48,6 +48,8 @@ class Request
 
     protected $url = "";
 
+    protected $siteUrl = "";
+
     protected $scheme = "";
 
     protected $controllerClass = "";
@@ -74,7 +76,7 @@ class Request
 
     public function __construct ()
     {
-        global $config, $url;
+        global $config;
 
         $this->server = $_SERVER;
 
@@ -108,34 +110,7 @@ class Request
 
         $this->scheme = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
 
-        if (empty($url)) {
-            $url = parseUrl ($this->requestUrl);
-        }
-
-        $this->controller = $url['controller'];
-
-        $this->controllerApp = $url['app'];
-
-        $this->controllerPath = $url['app'];
-
-        $this->controllerClass = ucfirst ($url['controller']);
-
-        $this->controllerFunction = $url['function'];
-
-        $this->controllerArgs = $url['vars'];
-
-        if (!is_null ($this->controllerArgs)) {
-            $arg = [];
-            foreach ($url['vars'] as $key => $value) {
-                if(empty($value)) $arg = array_merge ($arg,["$key"]);
-                else $arg = array_merge ($arg, ["$key=$value"]);
-            }
-            $arg = implode ("&", $arg);
-        } else $arg = "";
-
-        $this->url = $this->scheme . $this->domain . "/" . $this->controllerApp . "/" . $this->controllerPath . "/" . $this->controller;
-
-        $this->url .= empty($arg) ? "" : "?" . $arg;
+        $this->siteUrl = $this->scheme . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
         if (session_status () === PHP_SESSION_ACTIVE) $this->session = $_SESSION;
 
@@ -172,5 +147,31 @@ class Request
             return implode ("&", $arg);
         }
         return "";
+    }
+
+    public function setUrl($url){
+
+        $this->url = $url;
+
+        $this->controller = $url['controller'];
+
+        $this->controllerApp = $url['app'];
+
+        $this->controllerPath = $url['app'];
+
+        $this->controllerClass = ucfirst ($url['controller']);
+
+        $this->controllerFunction = $url['function'];
+
+        $this->controllerArgs = $url['vars'];
+
+        if (!is_null ($this->controllerArgs)) {
+            $arg = [];
+            foreach ($url['vars'] as $key => $value) {
+                if(empty($value)) $arg = array_merge ($arg,["$key"]);
+                else $arg = array_merge ($arg, ["$key=$value"]);
+            }
+            $arg = implode ("&", $arg);
+        } else $arg = "";
     }
 }

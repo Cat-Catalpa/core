@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Log;
+namespace startphp;
 
 class Log
 {

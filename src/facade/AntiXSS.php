@@ -10,13 +10,13 @@
 // +----------------------------------------------------------------------
 //请求执行时实现反XSS注入
 
-namespace startphp\Facade\AntiXSS;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class AntiXSS extends Facade
 {
     public static function setFacade () {
-        return "\startphp\AntiXSS\AntiXSS";
+        return "\startphp\AntiXSS";
     }
 }

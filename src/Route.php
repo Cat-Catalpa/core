@@ -12,7 +12,7 @@
  */
 
 
-namespace startphp\Route;
+namespace startphp;
 class Route {
     public function set ($alias,$origin = "",$method = "*") {
         global $route;

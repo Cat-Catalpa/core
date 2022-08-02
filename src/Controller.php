@@ -11,18 +11,18 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Controller;
+namespace startphp;
 
 class Controller
 {
 
-    protected $version, $view, $viewQueue, $template,$request;
+    protected $version, $view, $template,$request;
 
     function __construct ()
     {
         global $version, $viewQueue, $template;
         $this->version = $version = VERSION;
-        $this->view = $viewQueue->getMainView ();
+        $this->view = getClass("view");
         $this->viewQueue = $viewQueue;
         $this->template = $template;
         $this->request = new \Request;

@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Session;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Session extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Session\Session";
+        return "\startphp\Session";
     }
 }

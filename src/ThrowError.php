@@ -11,13 +11,14 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Error;
+namespace startphp;
 class ThrowError
 {
     function throw ($errfile, $errline, $errorcode = "System Error", $customSuffix = "", $errtitle = "", $errno = 2)
     {
         global $lang, $config, $hasBeenRun;
         $debug = debug_backtrace ();
+        $lang = app()->newInstance("lang")->lang();
         if ((isset($config['error_auto_clean']) && $config['error_auto_clean'])) {
             ob_clean ();
         } elseif ((!isset($config['error_auto_clean']) && $config['debug_mode'])) {
@@ -48,7 +49,7 @@ class ThrowError
             $headers = "From:" . $from;                                    // 头部信息设置
             mail ($to, $subject, $message, $headers);
         }
-        if(!env('system.debug.mode',false)){
+        if(!env('system.debug.mode',false) || !config('show_error_detail',false)){
             $errstr = $lang['something_wrong'];
         }
         echo /** @lang text */ "<head>
@@ -94,7 +95,7 @@ class ThrowError
         }
         </style>
         </head>";
-        if(env('system.debug.mode',false)) {
+        if(env('system.debug.mode',false) || config('show_error_detail',false)) {
             echo ("<body>");
             echo ("<h1>" . $errstr . "</h1>" . "<p style='line-height:20px'>[错误等级：" . $errno . "]<br>[错误代码：" . $errorcode . "]<br>[错误时间：" . date ('Y-m-d H:i:s') . "]</p>");
             echo ("<div class=\"detailed\">");

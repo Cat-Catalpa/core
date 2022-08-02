@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\DevDebug;
+namespace startphp;
 class DevDebug
 {
 

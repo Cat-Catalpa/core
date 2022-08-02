@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Request;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Request extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Request\Request";
+        return "\startphp\Request";
     }
 }

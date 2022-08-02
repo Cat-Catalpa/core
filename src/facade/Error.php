@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Error;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Error extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Error\Error";
+        return "\startphp\Error";
     }
 }

@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Controller;
+namespace startphp\Facade;
 
-class Controller extends \Facade
+class Controller extends Facade
 {
     protected static function setFacade ()
     {
-        return 'startphp\Controller\Controller';
+        return 'startphp\Controller';
     }
 
 }

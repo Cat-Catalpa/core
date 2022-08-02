@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\ViewQueue;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class ViewQueue extends  Facade
 {
     public static function setFacade () {
-        return "\startphp\ViewQueue\ViewQueue";
+        return "\startphp\ViewQueue";
     }
 }

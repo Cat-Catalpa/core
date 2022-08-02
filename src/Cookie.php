@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Cookie;
+namespace startphp;
 
 class Cookie
 {

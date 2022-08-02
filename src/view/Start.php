@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\View\Start;
+namespace startphp\view;
 
 class Start
 {
@@ -34,14 +34,19 @@ class Start
         $this->url = $url;
         hook_getClassName ('beforeParseFile')->transfer ([$this->fileContent]);
         $this->fileContent = $fileContent;
+        $this->parseNotes ();
+        $this->parseVars ();
         $this->parseInclude ();
         $this->parseController ();
         $this->parseModel ();
         $this->parseFunction();
         $this->parseIf ();
-        $this->parseVars ();
         hook_getClassName ('afterParseFile')->transfer ([$this->fileContent]);
         return $this->fileContent;
+    }
+
+    protected function parseNotes(){
+        $this->fileContent = preg_replace("/<!--.*-->/","",$this->fileContent);
     }
 
     protected function parseInclude ()
@@ -116,12 +121,71 @@ class Start
 
     protected function parseIf ()
     {
-        $isMatched = preg_match ('/{{if\s.+?}}[\s\S].+[\s\S]+{{\/if}}/', $this->fileContent, $matches);
+        if(preg_match_all ('/{{if(.*)}}([\s\S]+?){{\/if}}/', trim ($this->fileContent), $matches)) {
+            $matches = $matches[0];
+            $data = [];
+            foreach ($matches as $item) {
+                $isMatched = preg_match_all ('/{{\/else.*}}/', $item);
+                if($isMatched == 0) {
+                    preg_match_all ('/{{if(.*)}}([\s\S]+?){{\/if}}/', $item, $i);
+                    $condition = $i[1][0];
+                    $content = $i[2][0];
+                    $result = $this->parseIfByManual ($condition,$content,$item,true);
+                    if($result) break;
+                }
+                else{
+
+                    $isMatched = preg_match_all ('/{{if(.*)}}([\s\S]+?).*{{\//', trim ($this->fileContent), $i);
+                    if($isMatched != 0) {
+                        $condition = $i[1][0];
+                        $content = $i[2][0];
+                        $result = $this->parseIfByManual ($condition, $content, $item);
+                        if($result) break;
+                    }
+                    else \ThrowError::throw(__FILE__,__LINE__,"");
+
+                    $isMatched = preg_match_all ('/elseif(.*)}}([\s\S]+?).*{{\//', trim ($this->fileContent), $k);
+                    if($isMatched != 0){
+                        for ($i=0;$i<count($k)-1;$i++){
+                            $condition = $k[1][$i];
+                            $content = $k[2][$i];
+                            $this->parseIfByManual ($condition,$content,$item);
+                        }
+                    }
+
+                    $isMatched = preg_match_all ('/else}}([\s\S]+?).*{{\//', trim ($this->fileContent), $i);
+                    if($isMatched != 0){
+                        $this->parseIfByManual ("",$i[1][0],$item);
+                    }
+                }
+            }
+        }
+    }
+
+    protected function parseIfByManual ($condition,$content,$replace,$replaceEmpty = false): bool
+    {
+            $res = "";
+            if($condition == "") {
+                $this->fileContent = str_replace ($replace,$content,$this->fileContent);
+                return true;
+            }
+            else {
+                eval("\$res = $condition;");
+                if ($res) {
+                    $this->fileContent = str_replace ($replace, $content, $this->fileContent);
+                    return true;
+                } elseif ($replaceEmpty) {
+                    $this->fileContent = str_replace ($replace, "", $this->fileContent);
+                    return false;
+                }
+            }
+            return false;
+
     }
 
     protected function parseVars ()
     {
-        preg_match_all ('/{{\$.+?}}/', $this->fileContent, $matches);
+        preg_match_all ('/{{\$.+?}}/', trim ($this->fileContent), $matches);
         $matched = $matches[0];
         foreach ($matched as $v) {
             $valid = preg_replace ('/{{\$(.+?)}}/', '$1', $v);

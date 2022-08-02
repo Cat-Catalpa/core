@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Router;
+namespace startphp;
 
 class Router
 {
@@ -48,11 +48,20 @@ class Router
     {
         $query_file = $_SERVER["REQUEST_URI"];
         if ($query_file == "/") $query_file = "/index";
-        global $url, $hasBeenRun, $pageContent, $viewQueue;
+        global $hasBeenRun, $pageContent, $viewQueue;
+        if(file_exists(APP.ucfirst($url['app']).".php")){
+            require_once(APP.ucfirst($url['app']).".php");
+            $class = "app\\".ucfirst($url['app'])."\Entrance\Entrance";
+            $opinion = (new $class)->entrance($url) ?? true;
+            if(is_file(APP.ucfirst($url['app']).".php") && $opinion == false){
+                getClass("view")->setContent(\Template::getTemplateContent(config("access_denied_page","AccessDenied")))->setProtect();
+            }
+        }
         if (is_dir (APP . $url['app'] . DS . "config" . DS)) scan (APP . $url['app'] . DS . "config" . DS, true, function ($a, $v) {
             global $config, $url;
             $config = array_merge ($config, require_once (APP . $url['app'] . DS . "config" . DS . pathinfo ($v, PATHINFO_FILENAME) . ".php"));
         });
+        getClass ("request")->setUrl($url);
         if(file_exists (APP . $url['app'] . DS . "controller" . $url['path'] . $url['controller'] . ".php"))
             require_once (APP . $url['app'] . DS . "controller" . $url['path'] . $url['controller'] . ".php");
         else \ThrowError::throw(__FILE__, __LINE__, "EC100020", $query_file);

@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Template;
+namespace startphp;
 
 class Template
 {

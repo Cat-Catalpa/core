@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Env;
+namespace startphp;
 
 class Env
 {
@@ -23,28 +23,23 @@ class Env
         foreach ($env as $name => $value) {
             $parentNode = "";
             if(is_array ($value)){
-                $parentNode = strtoupper ($name);
+                $parentNode = $name;
                 foreach ($value as $n => $v) {
-                    $envItem = strtoupper ($parentNode."_$n=$v");
+                    $envItem = $parentNode."_$n=$v";
                     putenv($envItem);
                 }
             }
             else{
-                $envItem = strtoupper ("$name=$value");
+                $envItem = "$name=$value";
                 putenv($envItem);
             }
         }
     }
     public static function get(string $name, $default = null)
     {
-        $result = getenv(strtoupper(str_replace('.', '_', "system.debug.mode")));
+        $result = getenv(strtoupper(str_replace('.', '_', $name)));
 
         if (false !== $result) {
-            if ($result) {
-                $result = true;
-            } elseif (!$result) {
-                $result = false;
-            }
             return $result;
         }
         return $default;

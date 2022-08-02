@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Cookie;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Cookie extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Cookie\Cookie";
+        return "\startphp\Cookie";
     }
 }

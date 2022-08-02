@@ -11,8 +11,8 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\format\Html;
-use startphp\Response\Response;
+namespace startphp\format;
+use startphp\Response;
 
 class Html extends Response
 {

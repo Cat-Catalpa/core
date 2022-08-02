@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Hook;
+namespace startphp;
 
 class Hook
 {
@@ -19,6 +19,13 @@ class Hook
     protected $className = "";
 
     protected $functionName = "";
+
+    public function __construct () {
+        global $hook;
+        if(empty($hook)){
+            $hook = require_once CONFIG . "Hook.php";
+        }
+    }
 
     public function transfer ($args = "", $className = "", $functionName = "")
     {

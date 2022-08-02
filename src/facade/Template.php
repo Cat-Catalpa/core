@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Template;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Template extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Template\Template";
+        return "\startphp\Template";
     }
 }

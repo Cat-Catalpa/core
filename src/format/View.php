@@ -11,9 +11,9 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\format\View;
+namespace startphp\format;
 
-use startphp\Response\Response;
+use startphp\Response;
 
 class View extends Response
 {
@@ -25,9 +25,17 @@ class View extends Response
         $this->view = $view;
     }
 
-    public function print ($content = "",$returnContent = false)
+    public function print ($content = "")
     {
-        return $this->view->filter($content,true);
+        if(empty($content)) $content = $this->content;
+        $this->filter ($this->content);
+        echo $this->content;
+    }
+
+    public function filter ($content = "")
+    {
+        if(empty($content)) $content = $this->content;
+        return $this->view->filter($content)->render("%self%",$this);
     }
 
 }

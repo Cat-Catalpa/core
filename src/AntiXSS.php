@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 //请求执行时实现反XSS注入
 
-namespace startphp\AntiXSS;
+namespace startphp;
 class AntiXSS
 {
     public function antiXss ($str)

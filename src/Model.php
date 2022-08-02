@@ -1,6 +1,6 @@
 <?php
 
-namespace startphp\Model;
+namespace startphp;
 
 class Model
 {

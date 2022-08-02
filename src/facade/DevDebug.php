@@ -11,12 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\DevDebug;
-use startphp\Facade\Facade;
+namespace startphp\Facade;
+
+use startphp\Facade;
 
 class DevDebug extends Facade
 {
     public static function setFacade () {
-        return "\startphp\DevDebug\DevDebug";
+        return "\startphp\DevDebug";
     }
 }

@@ -11,12 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\ParseUrl;
-use startphp\Facade\Facade;
+namespace startphp\Facade;
+
+use startphp\Facade;
 
 class ParseUrl extends Facade
 {
     public static function setFacade () {
-        return "\startphp\ParseUrl\ParseUrl";
+        return "\startphp\urlParser\Start";
     }
 }

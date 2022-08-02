@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Log;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Log extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Log\Log";
+        return "\startphp\Log";
     }
 }

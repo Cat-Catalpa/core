@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Error;
+namespace startphp;
 
 class Error
 {
@@ -20,7 +20,7 @@ class Error
 
     public static function runError ($errno = 2, $errstr = 'Undefined Error', $errfile = 'Undefined Error', $errline = 0)
     {
-        $throwError = new ThrowError($errfile, $errline, $errorcode = "System Error", "", $errstr, $errno = 2);
+        $throwError = \ThrowError::throw($errfile, $errline, $errorcode = "System Error", "", $errstr, $errno = 2);
         return true;
     }
 

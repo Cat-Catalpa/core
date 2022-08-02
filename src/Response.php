@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Response;
+namespace startphp;
 
 class Response
 {
@@ -55,11 +55,10 @@ class Response
 
     public function create ($data = '', $type = 'html', $code = 200,$args = [])
     {
-
         require_once DIR."format".DS.ucfirst(strtolower($type)).".php";
-        $className = false !== strpos($type, '\\') ? $type : '\\startphp\\format\\' . ucfirst(strtolower($type)) . '\\' . ucfirst(strtolower($type));
+        $className = false !== strpos($type, '\\') ? $type : '\\startphp\\format\\' . ucfirst(strtolower($type));
         $args = array_merge ($args,[$data, $code]);
-        return \Container::getInstance()->invokeClass($className, $args);
+        return Container::getInstance()->invokeClass($className, $args);
     }
 
     public function render (): void
@@ -89,5 +88,17 @@ class Response
     {
         $this->vars = array_merge ($this->vars,$vars);
         return $this;
+    }
+
+    public function setContent ($content)
+    {
+        $this->content = $content;
+        return true;
+    }
+
+    public function getContent ()
+    {
+        $this->content;
+        return $this->content;
     }
 }

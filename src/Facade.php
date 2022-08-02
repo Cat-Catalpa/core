@@ -11,10 +11,10 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade;
+namespace startphp;
 
 
-use startphp\Container\Container;
+use startphp\Container;
 
 class Facade{
     public static function __callStatic($name,$args) {

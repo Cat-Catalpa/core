@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace Console\App\Commands;
+namespace startphp\Console\App\Commands;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

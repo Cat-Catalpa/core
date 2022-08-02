@@ -1,12 +1,12 @@
 <?php
 
-namespace startphp\Facade\Router;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Router extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Router\Router";
+        return "\startphp\Router";
     }
 }

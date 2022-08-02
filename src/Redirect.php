@@ -11,7 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Redirect;
+namespace startphp;
 
 class Redirect
 {

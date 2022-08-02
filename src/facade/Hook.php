@@ -11,13 +11,13 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\Facade\Hook;
+namespace startphp\Facade;
 
-use startphp\Facade\Facade;
+use startphp\Facade;
 
 class Hook extends Facade
 {
     public static function setFacade () {
-        return "\startphp\Hook\Hook";
+        return "\startphp\Hook";
     }
 }

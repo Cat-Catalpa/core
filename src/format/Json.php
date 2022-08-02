@@ -11,9 +11,9 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\format\Json;
+namespace startphp\format;
 
-use startphp\Response\Response;
+use startphp\Response;
 
 class Json extends Response
 {

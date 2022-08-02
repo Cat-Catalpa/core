@@ -11,9 +11,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace startphp\ViewQueue;
-
-use startphp\View\View;
+namespace startphp;
 
 class ViewQueue
 {
@@ -21,10 +19,12 @@ class ViewQueue
     protected $mainView;
     protected $viewName;
 
-    function __construct (View $view, $name)
+    function init (\startphp\View $view, $name)
     {
         $this->queue[$name] = $view;
         $this->mainView = $view;
+        container_instance ("view",$this->mainView);
+        return $this;
     }
 
     public function get ($name)
@@ -69,6 +69,7 @@ class ViewQueue
 
     public function setMainView ($view)
     {
+        container_instance ("view",$this->mainView);
         if(is_object ($view)) {
             $this->mainView = $view;
             return true;
