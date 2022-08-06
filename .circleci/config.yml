@@ -13,6 +13,8 @@ jobs:
     steps:
     - checkout
     - run: composer install -n --prefer-dist
+    - store_test_results:
+      path: test-results
 
   deploy:
     docker:
