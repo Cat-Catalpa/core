@@ -14,7 +14,7 @@ jobs:
       - checkout
       - codecov/upload:
           file: .circleci 
-      - run: ls -a
+      - run: pwd
 
   composer-install:
     docker:
