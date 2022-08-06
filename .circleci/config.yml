@@ -14,7 +14,8 @@ jobs:
 
     steps:
     - checkout
-    - codecov/upload
     - run: composer install -n --prefer-dist
+    - codecov/upload:
+          file: {{ coverage_report_filepath }}
       
     
