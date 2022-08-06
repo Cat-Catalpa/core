@@ -12,7 +12,8 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - codecov/upload
+      - codecov/upload:
+          file: .circleci 
       - run: ls -a
 
   composer-install:
