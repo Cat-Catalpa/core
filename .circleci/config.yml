@@ -8,11 +8,10 @@ orbs:
 jobs:
   
   upload-to-codecov:
-    docker:
-      - image: ubuntu-2004:202010-01
+    machine: # executor type
+      image: ubuntu-2004:202010-01
     steps:
       - codecov/upload
-      - run: ls
 
   composer-install:
     docker:
