@@ -12,6 +12,8 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
+      - codecov/upload:
+        conf: .circleci/config.yml
 
   composer-install:
     docker:
@@ -19,7 +21,6 @@ jobs:
     steps:
     - checkout
     - run: composer install -n --prefer-dist
-    - codecov/upload
 
 workflows:
   main-workflow:
