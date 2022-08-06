@@ -13,6 +13,7 @@ jobs:
     steps:
       - checkout
       - codecov/upload:
+          conf: .circleci/config.yml
           file: src
       - run: pwd
 
