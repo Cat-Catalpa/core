@@ -12,6 +12,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - codecov/upload
+      - run: export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
       - run: Ls
 
   composer-install:
