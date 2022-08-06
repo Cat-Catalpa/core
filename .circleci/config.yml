@@ -12,7 +12,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - codecov/upload
-      - run: echo Ls
+      - run: Ls
 
   composer-install:
     docker:
