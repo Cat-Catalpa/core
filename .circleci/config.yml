@@ -9,11 +9,10 @@ jobs:
   
   upload-to-codecov:
     docker:
-      - image: cimg/base:stable
+      - image: ubuntu-2004:202010-01
     steps:
       - codecov/upload
-      - run: export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
-      - run: Ls
+      - run: ls
 
   composer-install:
     docker:
