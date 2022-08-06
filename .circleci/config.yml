@@ -10,15 +10,13 @@ jobs:
   upload-to-codecov:
     docker:
       - image: cimg/base:stable
-    working_directory: ~/repo
     steps:
-      - codecov/upload:
-          file: ~/repo 
+      - codecov/upload
+      - run: echo Ls
 
   composer-install:
     docker:
       - image: circleci/php:7.3-browsers
-    working_directory: ~/repo
     steps:
     - checkout
     - run: composer install -n --prefer-dist
