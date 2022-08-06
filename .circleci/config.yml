@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - codecov/upload
-      - run: cd ~/
+      - run: cd ..
       - run: ls
 
   composer-install:
