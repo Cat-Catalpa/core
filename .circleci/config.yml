@@ -6,17 +6,26 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@3.2.3
 jobs:
+  
+  upload-to-codecov:
+    machine: # executor type
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - codecov/upload
+      - run: ls
+
   composer-install:
     docker:
       - image: circleci/php:7.3-browsers
     steps:
     - checkout
     - run: composer install -n --prefer-dist
-    - codecov/upload
 
 workflows:
   main-workflow:
     jobs:
       - composer-install
+      - upload-to-codecov
       
     
