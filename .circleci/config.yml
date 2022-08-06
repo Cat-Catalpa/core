@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - codecov/upload:
-          file: .circleci 
+          file: .circleci/config.yml
       - run: pwd
 
   composer-install:
