@@ -15,6 +15,7 @@ jobs:
     steps:
     - checkout
     - run: composer install -n --prefer-dist
+    - codecov/upload
 
   deploy:
     docker:
