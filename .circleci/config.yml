@@ -14,11 +14,7 @@ jobs:
 
     steps:
     - checkout
+    - codecov/upload
     - run: composer install -n --prefer-dist
-
-workflows:
-  upload-to-codecov:
-    jobs:
-      - checkout
-      - codecov/upload
+      
     
