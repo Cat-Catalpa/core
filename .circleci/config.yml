@@ -1,9 +1,26 @@
-# CircleCI configuration file
-version: 2.1
-
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
 jobs:
   build:
     docker:
-     - image: cimg/base:2022.05
+    - image: circleci/php:7.1-browsers
+    # 必要时可以在这里指定依赖镜像
+    # - image: circleci/mysql:9.4
+
+    working_directory: ~/repo
+
     steps:
-        - run: echo "Say hello to YAML!"
+    - checkout
+    - run: composer install -n --prefer-dist
+    
+  deploy:
+    docker:
+    - image: circleci/python:3.6.1
+
+    working_directory: ~/repo
+
+    steps:
+    
