@@ -14,7 +14,6 @@ jobs:
       - checkout
       - codecov/upload:
           file: .circleci/config.yml
-      - run: pwd
 
   composer-install:
     docker:
