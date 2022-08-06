@@ -3,8 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2
-orbs: 
-  codecov: codecov/codecov@3.2.3
+orbs:
+  codecov: codecov/codecov@3.1.1
 jobs:
   build:
     docker:
@@ -15,13 +15,10 @@ jobs:
     steps:
     - checkout
     - run: composer install -n --prefer-dist
-    - codecov/upload
 
-  deploy:
-    docker:
-    - image: circleci/python:3.6.1
-
-    working_directory: ~/repo
-
-    steps:
+workflows:
+  upload-to-codecov:
+    jobs:
+      - checkout
+      - codecov/upload
     
