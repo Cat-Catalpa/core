@@ -13,8 +13,7 @@ jobs:
     steps:
       - checkout
       - codecov/upload
-      - run: cd ..
-      - run: ls
+      - run: ls -a,–all 
 
   composer-install:
     docker:
