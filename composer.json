@@ -9,6 +9,7 @@
   },
   "license": "Apache-2.0",
   "autoload": {
+    "files": [],
     "psr-4": {
       "startphp\\": "src"
     }
