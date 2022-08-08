@@ -1,15 +1,16 @@
 {
   "name": "catcatalpa/core",
   "description": "StartPHP framework core code",
-  "type": "project",
   "require": {
     "php": ">=7.3"
+  },
+  "require-dev": {
+    "ext-json": "*"
   },
   "license": "Apache-2.0",
   "autoload": {
     "psr-4": {
-      "app\\": "app",
-      "Console\\": "startphp/console"
+      "startphp\\": "src"
     }
   },
   "authors": [
