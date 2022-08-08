@@ -5,7 +5,8 @@
     "php": ">=7.3"
   },
   "require-dev": {
-    "ext-json": "*"
+    "ext-json": "*",
+    "phpunit/phpunit": "^7.0"
   },
   "license": "Apache-2.0",
   "autoload": {
